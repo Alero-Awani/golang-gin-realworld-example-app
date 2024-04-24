@@ -5,17 +5,14 @@ provider "aws" {
 
 terraform {
   required_providers {
-    kubectl = {
-      source = "gavinbunney/kubectl"
-      version = ">=1.14.0"
-    }
-    helm = {
-      source = "hashicorp/helm"
-      version = ">=2.6.0"
-    }
+
     aws = {
       source  = "hashicorp/aws"
       version = "~> 5.45.0"
+    }
+    kubectl = {
+      source  = "gavinbunney/kubectl"
+      version = ">= 1.7.0"
     }
 
   }
