@@ -62,9 +62,9 @@ jobs:
         run: |
           terraform output -raw repository_url
 
-      # - name: terraform destroy
-      #   run: terraform destroy -auto-approve
-      #   working-directory: ${{ env.ROOT_PATH }}
+      - name: terraform destroy
+        run: terraform destroy -auto-approve
+        working-directory: ${{ env.ROOT_PATH }}
 
     
       
