@@ -58,5 +58,9 @@ jobs:
           terraform apply -auto-approve
         working-directory: ${{ env.ROOT_PATH }}
 
+      - name: Terraform output
+        run: |
+          echo "AWS_ECR_REPO=$(terraform output -raw repository_url)" >> $GITHUB_OUTPUT
+
     
       
