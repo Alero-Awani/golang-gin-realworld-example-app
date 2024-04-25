@@ -1,9 +1,10 @@
 name: Backend CI 
 
 on:
-  push:
-    tags:
-      - '*'
+  workflow_dispatch:
+  # push:
+  #   tags:
+  #     - '*'
 
 jobs:
   docker:
