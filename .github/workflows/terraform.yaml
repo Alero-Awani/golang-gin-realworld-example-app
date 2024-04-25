@@ -60,7 +60,11 @@ jobs:
 
       - name: Terraform output
         run: |
-          echo "AWS_ECR_REPO=$(terraform output -raw repository_url)" >> $GITHUB_OUTPUT
+          terraform output -raw repository_url
+
+      # - name: terraform destroy
+      #   run: terraform destroy -auto-approve
+      #   working-directory: ${{ env.ROOT_PATH }}
 
     
       
