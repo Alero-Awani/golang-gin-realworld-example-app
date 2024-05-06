@@ -58,10 +58,10 @@ jobs:
           terraform apply -auto-approve
         working-directory: ${{ env.ROOT_PATH }}
 
-      - name: Terraform output
-        id: tf
-        run: |
-          echo "AWS_ECR_REPO=$terraform output -raw repository_url)" >> $GITHUB_OUTPUT
+      # - name: Terraform output
+      #   id: tf
+      #   run: |
+      #     echo "AWS_ECR_REPO=$terraform output -raw repository_url)" >> $GITHUB_OUTPUT
 
       # - name: terraform destroy
       #   run: terraform destroy -auto-approve
@@ -78,7 +78,7 @@ jobs:
           ECR_REPOSITORY: ecr
           IMAGE_TAG: latest
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ../Dockerfile
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
 
