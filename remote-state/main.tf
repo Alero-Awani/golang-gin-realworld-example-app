@@ -4,9 +4,10 @@ provider "aws" {
 
 resource "aws_s3_bucket" "terraform_state" {
   bucket = "alero-tfstate"
+  force_destroy = true
      
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }
 

@@ -59,12 +59,28 @@ jobs:
         working-directory: ${{ env.ROOT_PATH }}
 
       - name: Terraform output
+        id: tf
         run: |
-          terraform output -raw repository_url
+          echo "AWS_ECR_REPO=$terraform output -raw repository_url)" >> $GITHUB_OUTPUT
 
-      - name: terraform destroy
-        run: terraform destroy -auto-approve
-        working-directory: ${{ env.ROOT_PATH }}
+      # - name: terraform destroy
+      #   run: terraform destroy -auto-approve
+      #   working-directory: ${{ env.ROOT_PATH }}
+
+      - name: Login to Amazon ECR
+        id: login-aws-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build and push the tagged docker image to Amazon ECR
+        id : containerImage
+        env:
+          ECR_REGISTRY: ${{ steps.login-aws-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ steps.tf.outputs.AWS_ECR_REPO }}
+          IMAGE_TAG: latest
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ../
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
 
     
       
