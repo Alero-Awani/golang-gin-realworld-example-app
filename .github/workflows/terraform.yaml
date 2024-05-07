@@ -36,13 +36,13 @@ jobs:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
           terraform_wrapper: false
 
-      # - name: terraform init
-      #   run: |
-      #     echo `pwd`
-      #     echo "** Running Terraform Init**"
-      #     terraform fmt
-      #     terraform init
-      #   working-directory: ${{ env.ROOT_PATH }}
+      - name: terraform init
+        run: |
+          echo `pwd`
+          echo "** Running Terraform Init**"
+          terraform fmt
+          terraform init
+        working-directory: ${{ env.ROOT_PATH }}
     
       # - name: terraform Plan
       #   run: |
