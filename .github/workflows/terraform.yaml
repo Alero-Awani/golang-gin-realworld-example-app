@@ -36,32 +36,32 @@ jobs:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
           terraform_wrapper: false
 
-      - name: terraform init
-        run: |
-          echo `pwd`
-          echo "** Running Terraform Init**"
-          terraform fmt
-          terraform init
-        working-directory: ${{ env.ROOT_PATH }}
+      # - name: terraform init
+      #   run: |
+      #     echo `pwd`
+      #     echo "** Running Terraform Init**"
+      #     terraform fmt
+      #     terraform init
+      #   working-directory: ${{ env.ROOT_PATH }}
     
-      - name: terraform Plan
-        run: |
-          echo `pwd`
-          echo "** Running Terraform Plan**"
-          terraform plan 
-        working-directory: ${{ env.ROOT_PATH }}
+      # - name: terraform Plan
+      #   run: |
+      #     echo `pwd`
+      #     echo "** Running Terraform Plan**"
+      #     terraform plan 
+      #   working-directory: ${{ env.ROOT_PATH }}
 
-      - name: terraform Apply
-        run: |
-          echo `pwd`
-          echo "** Running Terraform Apply**"
-          terraform apply -auto-approve
-        working-directory: ${{ env.ROOT_PATH }}
+      # - name: terraform Apply
+      #   run: |
+      #     echo `pwd`
+      #     echo "** Running Terraform Apply**"
+      #     terraform apply -auto-approve
+      #   working-directory: ${{ env.ROOT_PATH }}
 
-      - name: Terraform output
-        id: tf
-        run: |
-          echo "AWS_ECR_REPO=$terraform output -raw repository_url)" >> $GITHUB_OUTPUT
+      # - name: Terraform output
+      #   id: tf
+      #   run: |
+      #     echo "AWS_ECR_REPO=$terraform output -raw repository_url)" >> $GITHUB_OUTPUT
 
       - name: terraform destroy
         run: terraform destroy -auto-approve
