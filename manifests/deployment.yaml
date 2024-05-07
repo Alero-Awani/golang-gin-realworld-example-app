@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-go-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: my-go-app
+  template:
+    metadata:
+      labels:
+        name: my-go-app
+    spec:
+      containers:
+        - name: application
+          image: DOCKER_IMAGE
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080

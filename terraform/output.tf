@@ -3,13 +3,14 @@
 #   sensitive = true
 # }
 
-# output "cluster_id" {
-#     value = module.eks.cluster_id
-# }
-# output "cluster_endpoint" {
-#     value = module.eks.cluster_endpoint
-# }
+output "cluster_id" {
+    value = module.eks.cluster_id
+}
+output "cluster_endpoint" {
+    value = module.eks.cluster_endpoint
+}
 
 output "repository_url" {
   value = aws_ecr_repository.ecr.repository_url
 }
+
